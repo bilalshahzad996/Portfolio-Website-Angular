@@ -257,7 +257,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   downloadCV() {
-    alert('CV download coming soon!');
+    const link = document.createElement('a');
+    link.href = 'assets/BilalShahzad-Resume.pdf';
+    link.download = 'BilalShahzad-Resume.pdf';
+    link.click();
   }
 
   sendMessage() {
