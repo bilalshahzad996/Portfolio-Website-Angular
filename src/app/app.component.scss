@@ -1371,9 +1371,9 @@
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 
   .hire-btn { display: none; }
-  .menu-toggle { display: flex; }
+  .menu-toggle { display: flex; z-index: 1001; }
   .nav-links {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -1381,23 +1381,38 @@
     bottom: 0;
     background: rgba(5, 5, 8, 0.97);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 40px 24px;
+    gap: 4px;
+    padding: 80px 32px 40px;
     z-index: 999;
+    // Animate open/close instead of display:none snap
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    pointer-events: none;
 
-    &.open { display: flex; }
+    &.open {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
+      pointer-events: auto;
+    }
 
     .nav-link {
       font-size: 1.25rem;
-      padding: 14px 40px;
+      font-weight: 600;
+      padding: 16px 48px;
       width: 100%;
+      max-width: 320px;
       text-align: center;
+      border-radius: 12px;
     }
   }
-  .menu-toggle { z-index: 1001; }
 }
 
 // ── SM: tablet portrait / large phone (480–768) ────────────────────────────
@@ -1436,7 +1451,17 @@
   .about-card-main { width: 220px; height: 220px; }
   .about-initials-large { font-size: 4rem; }
   .about-visual { height: 280px; }
-  .about-actions { flex-direction: column; align-items: flex-start; }
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .about-actions .btn-primary,
+  .about-actions .btn-outline {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
   .btn-outline { width: 100%; max-width: 320px; justify-content: center; }
 
   .contact-form { padding: 24px 18px; }
@@ -1501,6 +1526,12 @@
   .btn-primary, .btn-secondary, .btn-outline {
     padding: 12px 20px;
     font-size: 0.875rem;
+    justify-content: center;
+  }
+  .about-actions .btn-primary,
+  .about-actions .btn-outline {
+    width: 100%;
+    max-width: 100%;
   }
   .highlight-chip { font-size: 0.75rem; padding: 5px 10px; }
   .tech-tag { font-size: 0.75rem; padding: 6px 14px; }
