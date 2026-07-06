@@ -86,7 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   stats = [
-    { value: '2+', label: 'Years Experience' },
+    { value: '1+', label: 'Years Experience' },
     { value: '10+', label: 'Projects Delivered' },
     { value: '15+', label: 'Happy Clients' },
     { value: '5', label: 'Core Specializations' }

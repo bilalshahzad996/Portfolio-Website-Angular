@@ -1386,12 +1386,12 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 80px 32px 40px;
+    padding: 72px 32px 32px;
+    overflow-y: auto;
     z-index: 999;
-    // Animate open/close instead of display:none snap
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
     pointer-events: none;
 
@@ -1404,11 +1404,11 @@
     }
 
     .nav-link {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 600;
-      padding: 16px 48px;
+      padding: 14px 48px;
       width: 100%;
-      max-width: 320px;
+      max-width: 280px;
       text-align: center;
       border-radius: 12px;
     }
