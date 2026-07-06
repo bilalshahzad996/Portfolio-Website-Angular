@@ -1294,6 +1294,11 @@
   color: var(--text-muted);
 }
 
+@keyframes navLinkFadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 // ─── SCROLL ANIMATIONS ─────────────────────────────────────────────────────
 .animate-on-scroll {
   opacity: 0;
@@ -1398,6 +1403,24 @@
       transform: scale(1) translateY(0);
       transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
       pointer-events: auto;
+    }
+
+    li {
+      opacity: 0;
+      transform: translateY(18px);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &.open li {
+      animation: navLinkFadeIn 0.4s ease both;
+      &:nth-child(1) { animation-delay: 0.08s; }
+      &:nth-child(2) { animation-delay: 0.15s; }
+      &:nth-child(3) { animation-delay: 0.22s; }
+      &:nth-child(4) { animation-delay: 0.29s; }
+      &:nth-child(5) { animation-delay: 0.36s; }
+      &:nth-child(6) { animation-delay: 0.43s; }
     }
 
     .nav-link {
