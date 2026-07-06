@@ -699,6 +699,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
+  padding: 0 16px;
 }
 
 .about-card-main {
@@ -737,21 +739,22 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 16px 20px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   gap: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  max-width: calc(50% + 40px);
 
   &.card-exp {
-    top: 20px;
-    right: -20px;
+    top: 16px;
+    right: -10px;
     animation: badgeFloat 5s ease-in-out infinite;
   }
 
   &.card-tech {
-    bottom: 20px;
-    left: -20px;
+    bottom: 16px;
+    left: -10px;
     animation: badgeFloat 7s ease-in-out infinite reverse;
   }
 }
@@ -982,6 +985,119 @@
   opacity: 0;
   transform: translate(-4px, 4px);
   transition: all 0.3s ease;
+}
+
+// ─── PROJECTS ──────────────────────────────────────────────────────────────
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--border);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+}
+
+.project-icon-wrap {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.875rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15);
+  }
+
+  i { position: relative; z-index: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+}
+
+.project-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.project-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.project-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.project-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  color: var(--accent-light);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  i { font-size: 0.7rem; }
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 6px;
+  transition: gap 0.2s ease, opacity 0.2s ease;
+
+  &:hover { gap: 10px; opacity: 0.85; }
+}
+
+.projects-grid .project-card {
+  &:nth-child(2) { transition-delay: 0.05s; }
+  &:nth-child(3) { transition-delay: 0.1s; }
+  &:nth-child(4) { transition-delay: 0.15s; }
+  &:nth-child(5) { transition-delay: 0.1s; }
+  &:nth-child(6) { transition-delay: 0.05s; }
+  &:nth-child(7) { transition-delay: 0.1s; }
+  &:nth-child(8) { transition-delay: 0.15s; }
 }
 
 // ─── CONTACT ───────────────────────────────────────────────────────────────
@@ -1223,6 +1339,7 @@
   .nav-container { padding: 0 32px; gap: 24px; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { gap: 48px; }
 }
 
@@ -1243,8 +1360,13 @@
 
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-visual { height: 320px; order: -1; }
-  .about-card-floating.card-exp { top: 10px; right: 20px; }
-  .about-card-floating.card-tech { bottom: 10px; left: 20px; }
+  .about-card-floating.card-exp { top: 10px; right: 10px; }
+  .about-card-floating.card-tech { bottom: 10px; left: 10px; }
+
+  // Keep scroll circle from overlapping contact items
+  .scroll-circle-wrap { right: 16px; bottom: 24px; width: 80px; height: 80px; }
+  .scroll-circle-inner { width: 44px; height: 44px; }
+  .scroll-initials { font-size: 0.875rem; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 
@@ -1309,6 +1431,7 @@
 
   .skills-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
 
   .about-card-main { width: 220px; height: 220px; }
   .about-initials-large { font-size: 4rem; }
@@ -1360,6 +1483,8 @@
 
   .service-card { padding: 24px 20px; }
   .service-title { font-size: 1rem; }
+  .project-body { padding: 18px; }
+  .project-title { font-size: 1rem; }
 
   .contact-form { padding: 20px 14px; border-radius: 14px; }
   .contact-heading { font-size: 1.25rem; }

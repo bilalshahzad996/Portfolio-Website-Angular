@@ -92,7 +92,74 @@ export class AppComponent implements OnInit, OnDestroy {
     { value: '5', label: 'Core Specializations' }
   ];
 
-  navLinks = ['Home', 'About', 'Skills', 'Services', 'Contact'];
+  navLinks = ['Home', 'About', 'Skills', 'Services', 'Projects', 'Contact'];
+
+  projects = [
+    {
+      icon: 'fa-brands fa-figma',
+      title: 'Designed Mobile Apps',
+      desc: 'Designed a comprehensive SIS App (Inventory Management) featuring sales processing, purchase receiving, purchase returns, and more. Also designed a HRMS App — all crafted with Figma for seamless UX.',
+      tags: [{ icon: 'fa-brands fa-figma', label: 'Figma' }, { icon: 'fa-solid fa-mobile-screen', label: 'UI/UX' }],
+      gradient: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+      link: null
+    },
+    {
+      icon: 'fa-solid fa-building-columns',
+      title: 'POS Backend Project',
+      desc: 'Custom backend system for a retail POS App in Business Central using AL — API integrations, store & warehouse management, automated sales posting, and transaction synchronization.',
+      tags: [{ icon: 'fa-solid fa-building-columns', label: 'Business Central' }, { icon: 'fa-solid fa-code', label: 'AL' }],
+      gradient: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+      link: null
+    },
+    {
+      icon: 'fa-solid fa-gears',
+      title: 'D365 F&O Customizations',
+      desc: 'Customized and developed D365 F&O components including tables, forms, extensions, data entities, batch jobs, number sequences, and X++ business logic to support business requirements.',
+      tags: [{ icon: 'fa-solid fa-gears', label: 'F&O' }, { icon: 'fa-solid fa-code', label: 'X++' }],
+      gradient: 'linear-gradient(135deg, #06b6d4, #0ea5e9)',
+      link: null
+    },
+    {
+      icon: 'fa-brands fa-python',
+      title: 'Odoo Development',
+      desc: 'Engineered Odoo 19 vertical solutions covering Hospitality (POS), Healthcare (HMS/Dental), and Supply Chain Logistics (Freight Forwarding). Extended Odoo base models via inheritance.',
+      tags: [{ icon: 'fa-brands fa-python', label: 'Python' }, { icon: 'fa-solid fa-cubes', label: 'Odoo 19' }],
+      gradient: 'linear-gradient(135deg, #a78bfa, #7c3aed)',
+      link: null
+    },
+    {
+      icon: 'fa-brands fa-react',
+      title: 'Ecommerce Website',
+      desc: 'Live jewellery e-commerce website built with React — product management, cart logic, multi-step checkout, and real-time order notifications via WhatsApp. Currently serving real customers in Pakistan.',
+      tags: [{ icon: 'fa-brands fa-react', label: 'React' }, { icon: 'fa-solid fa-cart-shopping', label: 'E-Commerce' }],
+      gradient: 'linear-gradient(135deg, #06b6d4, #22c55e)',
+      link: 'https://mbn-store-pi.vercel.app/'
+    },
+    {
+      icon: 'fa-solid fa-brain',
+      title: 'Sales Brain',
+      desc: 'AI-powered sales call intelligence platform (Next.js, TypeScript, Prisma) that transcribes and analyzes calls using Groq Whisper/LLaMA models — coaching insights, pipeline analytics, and one-click CRM sync.',
+      tags: [{ icon: 'fa-brands fa-js', label: 'Next.js' }, { icon: 'fa-solid fa-robot', label: 'AI / LLM' }, { icon: 'fa-solid fa-database', label: 'Prisma' }],
+      gradient: 'linear-gradient(135deg, #ec4899, #7c3aed)',
+      link: null
+    },
+    {
+      icon: 'fa-brands fa-react',
+      title: 'HRMS App',
+      desc: 'Full-featured HR management web app in React and TypeScript with modules for employee directory, attendance tracking, leave management, and an interactive analytics dashboard.',
+      tags: [{ icon: 'fa-brands fa-react', label: 'React' }, { icon: 'fa-brands fa-js', label: 'TypeScript' }, { icon: 'fa-solid fa-chart-bar', label: 'Analytics' }],
+      gradient: 'linear-gradient(135deg, #f97316, #eab308)',
+      link: null
+    },
+    {
+      icon: 'fa-brands fa-vuejs',
+      title: 'Booking Platform',
+      desc: 'Multi-tenant booking platform (Vue 3, TypeScript, Pinia) with real-time admin calendar and a customer self-booking flow.',
+      tags: [{ icon: 'fa-brands fa-vuejs', label: 'Vue 3' }, { icon: 'fa-brands fa-js', label: 'TypeScript' }, { icon: 'fa-solid fa-calendar-days', label: 'Pinia' }],
+      gradient: 'linear-gradient(135deg, #22c55e, #06b6d4)',
+      link: null
+    },
+  ];
 
   ngOnInit() {
     this.startTyping();
@@ -120,7 +187,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   updateActiveSection() {
-    const sections = ['home', 'about', 'skills', 'services', 'contact'];
+    const sections = ['home', 'about', 'skills', 'services', 'projects', 'contact'];
     for (const id of sections) {
       const el = document.getElementById(id);
       if (el) {
@@ -140,13 +207,18 @@ export class AppComponent implements OnInit, OnDestroy {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
+    // Mark elements already in viewport visible immediately
     setTimeout(() => {
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        }
         observer.observe(el);
       });
-    }, 100);
+    }, 50);
   }
 
   startTyping() {

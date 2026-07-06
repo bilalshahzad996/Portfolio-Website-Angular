@@ -281,6 +281,43 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
+<section class="section section-alt" id="projects">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-tag">My Work</span>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Real-world solutions built across ERP, web, and mobile platforms</p>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.title) {
+        <div class="project-card animate-on-scroll">
+          <div class="project-icon-wrap" [style.background]="project.gradient">
+            <i [class]="project.icon"></i>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-desc">{{ project.desc }}</p>
+            <div class="project-tags">
+              @for (tag of project.tags; track tag.label) {
+                <span class="project-tag">
+                  <i [class]="tag.icon"></i> {{ tag.label }}
+                </span>
+              }
+            </div>
+            @if (project.link) {
+              <a [href]="project.link" target="_blank" rel="noopener" class="project-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section section-alt" id="contact">
   <div class="section-container">
