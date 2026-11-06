@@ -94,8 +94,8 @@
     </div>
 
     <p class="hero-desc animate-on-scroll">
-      Crafting enterprise-grade ERP solutions and beautiful digital experiences.
-      Specializing in Microsoft Business Central, F&O, Odoo, and modern front-end development.
+      Associate Technical Consultant crafting enterprise-grade ERP solutions and beautiful digital experiences.
+      Specializing in Microsoft Business Central, F&O, Odoo, modern web development and mobile games.
     </p>
 
     <div class="hero-actions animate-on-scroll">
@@ -158,6 +158,19 @@
   }
 </div>
 
+<!-- TECH MARQUEE -->
+<div class="marquee" aria-label="Technologies I work with">
+  <div class="marquee-track">
+    @for (pass of [0, 1]; track pass) {
+      @for (t of techStack; track t.label) {
+        <span class="marquee-item" [attr.aria-hidden]="pass === 1 ? 'true' : null">
+          <i [class]="t.icon"></i> {{ t.label }}
+        </span>
+      }
+    }
+  </div>
+</div>
+
 <!-- ABOUT -->
 <section class="section" id="about">
   <div class="section-container">
@@ -188,14 +201,15 @@
           Building Enterprise Solutions &amp; Digital Experiences
         </h3>
         <p class="about-text">
-          I'm <strong>Bilal Shahzad</strong>, a versatile technology professional with expertise spanning
-          ERP development, UI/UX design, and modern web development. With 1+ year of hands-on experience,
-          I bridge the gap between business requirements and technical implementation.
+          I'm <strong>Bilal Shahzad</strong>, a dedicated Dynamics 365 developer and Associate Technical Consultant
+          at Tribox, passionate about solving problems and improving business processes. I specialize in ERP
+          customizations and have designed mobile apps, blending technical development with strong UI/UX design skills using Figma.
         </p>
         <p class="about-text">
-          My work revolves around Microsoft Dynamics 365 Business Central, Finance & Operations,
-          Odoo ERP, and building polished front-end interfaces. I thrive on solving complex business
-          challenges with elegant, scalable solutions.
+          My work spans Microsoft Dynamics 365 Business Central (AL), Finance &amp; Operations (X++), Odoo ERP,
+          REST APIs, Peppol e-invoicing and RDLC/SSRS reporting, along with React, Next.js and Vue web apps
+          and Unity mobile games. My commitment is to deliver clean, reliable solutions that drive efficiency
+          and enhance user experiences.
         </p>
 
         <div class="about-highlights">
@@ -219,8 +233,49 @@
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section class="section section-alt" id="experience">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-tag">My Journey</span>
+      <h2 class="section-title">Experience &amp; Education</h2>
+      <p class="section-subtitle">Where I've worked and what I've studied</p>
+    </div>
+
+    <div class="journey-grid">
+      <div class="journey-col">
+        <h3 class="journey-heading"><i class="fa-solid fa-briefcase"></i> Work Experience</h3>
+        <div class="timeline">
+          @for (job of experience; track job.role) {
+            <div class="timeline-item spotlight animate-on-scroll">
+              <span class="timeline-dot"></span>
+              <span class="timeline-period">{{ job.period }}</span>
+              <h4 class="timeline-title">{{ job.role }}</h4>
+              <span class="timeline-place">{{ job.company }}</span>
+              <p class="timeline-desc">{{ job.desc }}</p>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="journey-col">
+        <h3 class="journey-heading"><i class="fa-solid fa-graduation-cap"></i> Education &amp; Certifications</h3>
+        <div class="timeline">
+          @for (edu of education; track edu.title) {
+            <div class="timeline-item spotlight animate-on-scroll">
+              <span class="timeline-dot"></span>
+              <span class="timeline-period">{{ edu.period }}</span>
+              <h4 class="timeline-title">{{ edu.title }}</h4>
+              <span class="timeline-place">{{ edu.place }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SKILLS -->
-<section class="section section-alt" id="skills">
+<section class="section" id="skills">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
       <span class="section-tag">My Skills</span>
@@ -256,7 +311,7 @@
 </section>
 
 <!-- SERVICES -->
-<section class="section" id="services">
+<section class="section section-alt" id="services">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
       <span class="section-tag">What I Do</span>
@@ -266,7 +321,7 @@
 
     <div class="services-grid">
       @for (service of services; track service.title) {
-        <div class="service-card animate-on-scroll">
+        <div class="service-card spotlight animate-on-scroll">
           <div class="service-icon-wrap" [style.background]="service.gradient">
             <i [class]="service.icon"></i>
           </div>
@@ -282,7 +337,7 @@
 </section>
 
 <!-- PROJECTS -->
-<section class="section section-alt" id="projects">
+<section class="section" id="projects">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
       <span class="section-tag">My Work</span>
@@ -292,7 +347,7 @@
 
     <div class="projects-grid">
       @for (project of projects; track project.title) {
-        <div class="project-card animate-on-scroll">
+        <div class="project-card spotlight animate-on-scroll">
           <div class="project-icon-wrap" [style.background]="project.gradient">
             <i [class]="project.icon"></i>
           </div>
